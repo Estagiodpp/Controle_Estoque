@@ -89,7 +89,7 @@
 
                 case "Exclusão" :
                     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
-                    $sql_code = "select * from history where acao='$acao' and NOMEITEM like'%$buscar%' LIMIT $inicio , $itens_por_pagina";
+                    $sql_code = "select * from history where acao='$acao' and NOMEITEM like'%$buscar%' ORDER BY DATA DESC LIMIT $inicio , $itens_por_pagina ";
                     $execute = $mysqli->query($sql_code) or die($mysqli->error);
                     $produto = $execute->fetch_assoc();
                     $num = $execute->num_rows;
@@ -100,7 +100,7 @@
 
                    case "Alteração" :
                     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
-                    $sql_code = "select * from history where acao='$acao' and NOMEITEM like'%$buscar%'  LIMIT $inicio , $itens_por_pagina";
+                    $sql_code = "select * from history where acao='$acao' and NOMEITEM like'%$buscar%' ORDER BY DATA DESC LIMIT $inicio , $itens_por_pagina ";
                     $execute = $mysqli->query($sql_code) or die($mysqli->error);
                     $produto = $execute->fetch_assoc();
                     $num = $execute->num_rows;
@@ -111,7 +111,7 @@
 
                    case "Movimentação" :
                     $inicio = ($itens_por_pagina * $pagina) - $itens_por_pagina;
-                    $sql_code = "select * from history where acao='$acao' and NOMEITEM like'%$buscar%' LIMIT $inicio , $itens_por_pagina";
+                    $sql_code = "select * from history where acao='$acao' and NOMEITEM like'%$buscar%'ORDER BY DATA DESC LIMIT $inicio , $itens_por_pagina ";
                     $execute = $mysqli->query($sql_code) or die($mysqli->error);
                     $produto = $execute->fetch_assoc();
                     $num = $execute->num_rows;

@@ -14,7 +14,7 @@
   </div>
   <div class="divtable  table-responsive">
     <table class="table table-responsive  ">
-      <tr class="active" ">
+      <tr class="active" >
 
 <!DOCTYPE html>
 <html lang=" PT-BR">
@@ -201,9 +201,10 @@
                           <td align="center"><?php echo $produto['PROTOCOLO']; ?></td>
                           <td align="center"><?php echo $produto['gms']; ?></td>
 
-                          <td><a class='btn-editar btn btn-sm btn-warning' href="editar_pat.php?id=<?php echo $produto['PATRIMONIO']; ?>&loc=<?php echo $loc; ?>&pat=<?php echo "$pat"; ?>" role='button'><i></i>&nbspEditar&nbsp</a>
+                          <td><a class='btn-editar btn btn-sm btn-warning' href="editar_pat.php?id=<?php echo $produto['PATRIMONIO']; ?>&loc=<?php echo $loc; ?>&pat=<?php echo "$pat"; ?>" role='button'><i></i>&nbsp&nbsp&nbsp&nbspEditar&nbsp&nbsp&nbsp&nbsp</a>
 
-                            <a class='btn-editar btn btn-sm btn-danger' href="excluir_pat.php?id=<?php echo $produto['PATRIMONIO']; ?>&loc=<?php echo $loc; ?>&pat=<?php echo "$pat"; ?>" role='button'><i></i>Excluir</a>
+                            <a class='btn-editar btn btn-sm btn-danger' href="excluir_pat.php?id=<?php echo $produto['PATRIMONIO']; ?>&loc=<?php echo $loc; ?>&pat=<?php echo "$pat"; ?>" role='button'><i></i>&nbsp&nbsp&nbspExcluir&nbsp&nbsp&nbsp</a>
+                             <a class='btn-editar btn btn-sm btn-dark' href="../../MOVIMENTAR/INDEXMOVIMENTAR.php?id=<?php echo $produto['PATRIMONIO']; ?>&tipo=Patrimonio" role='button'><i></i>Transferir</a>
 
 
                         </tr>

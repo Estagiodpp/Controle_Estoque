@@ -5,8 +5,8 @@
 
   <?php
 
-  include_once("../conexao2.php");
-  include_once("../conexao.php");
+  include_once("../../conexao2.php");
+  include_once("../../conexao.php");
   ?>
 
 
@@ -63,6 +63,17 @@
                 }
 
 
+
+                if (isset($_GET['loc'])) {
+
+                  @$loc = $_GET['loc'];
+                }
+
+
+                if (isset($_GET['nomeitem'])) {
+
+                  @$nomeitem = $_GET['nomeitem'];
+                }
 
 
 
@@ -189,9 +200,10 @@
                           <td align="center"><?php echo $produto['PROTOCOLO']; ?></td>
                           <td align="center"><?php echo $produto['gms']; ?></td>
 
-                          <td><a class='btn-editar btn btn-sm btn-warning' href="editar_almox.php?id=<?php echo $produto['id']; ?>&loc=<?php echo $loc; ?>&nomeitem=<?php echo $nomeitem; ?>" role='button'><i></i>&nbspEditar&nbsp</a>
+                         <td><a class='btn-editar btn btn-sm btn-warning' href="editar_almox.php?id=<?php echo $produto['id']; ?>&loc=<?php echo $loc; ?>&nomeitem=<?php echo $nomeitem; ?>" role='button'><i></i>&nbsp&nbsp&nbsp&nbspEditar&nbsp&nbsp&nbsp&nbsp</a>
 
-                            <a class='btn-editar btn btn-sm btn-danger' href="excluir_almox.php?id=<?php echo $produto['id']; ?>&loc=<?php echo $loc; ?>&nomeitem=<?php echo $nomeitem; ?>" role='button'><i></i>Excluir</a>
+                            <a class='btn-editar btn btn-sm btn-danger' href="excluir_almox.php?id=<?php echo $produto['id']; ?>&loc=<?php echo $loc; ?>&nomeitem=<?php echo $nomeitem; ?>" role='button'><i></i>&nbsp&nbsp&nbspExcluir&nbsp&nbsp&nbsp</a>
+                            <a class='btn-editar btn btn-sm btn-dark' href="../../MOVIMENTAR/INDEXMOVIMENTAR.php?id=<?php echo $produto['id']; ?>&tipo=Almoxarifado" role='button'><i></i>Transferir</a>
 
 
                         </tr>

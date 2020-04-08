@@ -95,15 +95,13 @@
 
                         </form>
                     </div>
-
-
+                   
 <!--
                     <div align="center">
                         <a class="btn btn--radius-2 btn--red" href="http://zxing.appspot.com/scan?ret=http://10.77.38.35/ambienteteste/CONTROLE/PRINCIPAL/funcionacod.php/?codigo={CODE} ">PESQUISAR POR CÓDIGO DE BARRAS</a>
 
                     </div>
 -->
-
 
 
                     </form>

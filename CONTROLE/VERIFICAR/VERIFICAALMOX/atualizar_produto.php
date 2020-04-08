@@ -22,8 +22,8 @@ $acao="Alteração";
 $tipo="Almoxarifado";
 $pat="0";
 //aqui faz o historico de transferencia na tabela history
-	$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,PROTOCOLO,ip,acao)
-values('$nome','$localmox','$localmox','$tipo','$quantidadealmox','$descalmox',now(),'$pat','$prot','$ip','$acao')
+	$$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,RESPONSAVEL,ip,acao)
+values('$nomeitemBANCO','$ORIGEM','$DESTINO','$tipo','$QUANTIDADE','$descricao',now(),'$pat','$SERIE','$motivo','$protocolo','$ip','$acao')
 ";
 	$pesq = mysqli_query($conn, $historico);
     header("Location: ../VERIFICAALMOX/listar_produtos.php?atualizado=$idalmox&nomeitem=$itematual&loc=$locatual&pagina=1"); 

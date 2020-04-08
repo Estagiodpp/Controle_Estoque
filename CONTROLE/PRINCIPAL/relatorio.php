@@ -29,6 +29,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
     <script src="http://digitalbush.com/files/jquery/maskedinput/rc3/jquery.maskedinput.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
 
@@ -93,10 +95,17 @@
 
 
 
+ <?php include_once("grafico.php");
+                    $gerar= new grafico();
+?>
 
+<br><br>
 
+<div  id="columnchart_material" style="  width: 500px; height: 300px "></div>
 
-        
+         <?php include_once("grafico.php");
+                    $gerar= new grafico();
+?>
 
 
 
@@ -118,6 +127,39 @@
         </div>
     </div>
 
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Tipo', 'Movimentação', 'Exclusão', 'Alteração'],
+          ['Almoxarifado', <?=$gerar->calc_grap("Movimentação","Almoxarifado");?>, <?=$gerar->calc_grap("Exclusão","Almoxarifado");?>, <?=$gerar->calc_grap("Alteração","Almoxarifado");?>],
+          ['Patrimonio',<?=$gerar->calc_grap("Movimentação","Patrimonio");?> , <?=$gerar->calc_grap("Exclusão","Patrimonio");?>, <?=$gerar->calc_grap("Alteração","Patrimonio");?>],
+
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Relatório Geral',
+            subtitle: '',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+
+
+
+
+
+
+
+
     <!-- Jquery JS-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
@@ -127,6 +169,8 @@
 
     <!-- Main JS-->
     <script src="../js/global.js"></script>
+
+
 
 </body>
 

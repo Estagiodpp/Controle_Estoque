@@ -28,6 +28,11 @@
 
           <!-- Bootstrap -->
           <link href="css/bootstrap.min.css" rel="stylesheet">
+             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
 
           <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
           <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -83,7 +88,14 @@
                   $pagina=1;
                 }
                 $itens_por_pagina = 10;
+             //inicializa as variaveis para contar quantos itens foram movimentados em cada lugar
+                      $mateus_leme=0;
+                       $mateus_leme2=0;
+                      $colombo=0;
+                      $londrina=0;
+                      $ponta_grossa=0;
 
+        
 
                 switch  ($acao){
 
@@ -135,13 +147,15 @@ echo" Não há ações relacionadas a este item";
 
                 ?>
 
-
                 <?php if ($num > 0) { ?>
                   <table class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <td>
                           <h5>Nome Item</h5>
+                        </td>
+                        <td>
+                          <h5>Tipo</h5>
                         </td>
                         <td>
                           <h5>Descrição</h5>
@@ -173,6 +187,7 @@ echo" Não há ações relacionadas a este item";
                       ?>
                         <tr>
                           <td align="center"><?php echo $produto['NOMEITEM']; ?></td>
+                          <td align="center"><?php echo $produto['TIPO']; ?></td>
                           <td align="center"><?php echo $produto['DESCRICAO']; ?></td>
                           <td align="center"><?php echo $produto['QUANTIDADE']; ?></td>
                           <td align="center"><?php echo $produto['ORIGEM']; ?></td>
@@ -182,7 +197,12 @@ echo" Não há ações relacionadas a este item";
                           <td align="center"><?php echo $produto['ip']; ?></td>
 
                         </tr>
+   
+
+
                       <?php } while ($produto = $execute->fetch_assoc()); ?>
+
+
                     </tbody>
                   </table>
 
@@ -220,6 +240,21 @@ echo" Não há ações relacionadas a este item";
 
                     </ul>
                   </nav>
+ <?php include_once("grafico.php");
+                    $gerar= new grafico();
+
+
+?>
+<a href="#" onclick="esconde()">Mostrar Grafico</a>
+
+<div id="teste" style="display:none">
+  
+<div id="piechart"   style="width: 500px; height: 300px; "></div>
+<div id="piechart2"  style="width: 500px; height: 300px; "></div>
+<div id="piechart3"  style="width: 500px; height: 300px; "></div>
+
+</div>
+
 
               </div>
             </div>
@@ -230,6 +265,88 @@ echo" Não há ações relacionadas a este item";
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
           <!-- Include all compiled plugins (below), or include individual files as needed -->
           <script src="js/bootstrap.min.js"></script>
+
+          
+             <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Tipo', 'Quantidade'],
+          ['Almoxarifado',<?=$gerar->item_acao($buscar,"Movimentação","Almoxarifado");?>],
+          ['Patrimonio',<?=$gerar->item_acao($buscar,"Movimentação","Patrimonio");?>],
+        ]);
+
+           var data2 = google.visualization.arrayToDataTable([
+          ['Tipo', 'Quantidade'],
+          ['Almoxarifado',<?=$gerar->item_acao($buscar,"Exclusão","Almoxarifado");?>],
+          ['Patrimonio',<?=$gerar->item_acao($buscar,"Exclusão","Patrimonio");?>],
+        ]);
+
+           var data3 = google.visualization.arrayToDataTable([
+          ['Tipo', 'Quantidade'],
+          ['Almoxarifado',<?=$gerar->item_acao($buscar,"Alteração","Almoxarifado");?>],
+          ['Patrimonio',<?=$gerar->item_acao($buscar,"Alteração","Patrimonio");?>],
+        ]);
+
+
+
+
+
+
+        var options = {
+          title: 'Movimentações',
+        };
+
+        var options2 = {
+          title: 'Exclusões',
+        };
+        var options3 = {
+          title: 'Alterações',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+        var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
+        
+        chart.draw(data,options);
+        chart2.draw(data2,options2);
+        chart3.draw(data3,options3);
+      }
+    </script>
+
+
+
+                        <script>
+                            function esconde() {
+                                var div1 = document.getElementById('piechart') // id da div nome item
+                                var div2 = document.getElementById('piechart2') //id da div localizacao
+                                var div3 = document.getElementById('piechart3') //id da div patrimonio
+                                var teste = document.getElementById('teste') //id da div patrimonio
+
+                               if(teste.style.display=="none"){
+
+                                teste.style.display = "block"
+                                teste.style.visibility = "visibled"
+                                
+
+                               }else{
+
+                                teste.style.display = "none"
+                               }
+                                
+
+                               
+
+
+                            }
+                        </script>
+
+
+
+
         </body>
 
         </html>

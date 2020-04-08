@@ -28,8 +28,8 @@ $acao="Alteração";
 $tipo="Patrimonio";
 $pat="0";
 //aqui faz o historico de transferencia na tabela history
-	$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,PROTOCOLO,ip,acao)
-values('$nome','$localpat','$localpat','$tipo','$quantidadepat','$descpat',now(),'$pat','$prot','$ip','$acao')
+	$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,RESPONSAVEL,ip,acao)
+values('$nomeitemBANCO','$ORIGEM','$DESTINO','$tipo','$QUANTIDADE','$descricao',now(),'$pat','$SERIE','$motivo','$protocolo','$ip','$acao')
 ";
 $pesq = mysqli_query($conn, $historico);
 

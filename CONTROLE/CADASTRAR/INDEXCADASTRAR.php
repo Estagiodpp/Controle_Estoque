@@ -58,6 +58,10 @@
                     <h2 class="title">Cadastrar</h2>
                 </div>
                 <div class="card-body">
+
+
+
+
                     <form name="form1" action="salva_cadastro.php" method="POST">
 
 
@@ -228,10 +232,16 @@
                         </div>
                     </form>
 
-                    <form action="../PRINCIPAL">
+               <br><br><br>
+                    <?php
+include_once("import.html");
+echo"<br><br><br><br>";
+?>
+     <form action="../PRINCIPAL">
                         <br><input type="submit" class="btn btn--radius btn--pill btn--green btn--dir" value="Voltar">
 
                     </form>
+
                 </div>
             </div>
 

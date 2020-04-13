@@ -33,6 +33,8 @@ if ($f) {
     $cabecalho = fgetcsv($f, 0, $delimitador, $cerca);
 
     // Enquanto nao terminar o arquivo
+    $cont=0;
+    $cont1=0;
     while (!feof($f)) { 
 
         // Ler uma linha do arquivo
@@ -40,16 +42,15 @@ if ($f) {
         if (!$linha) {
             continue;
         }
-
+        
         // Montar registro com valores indexados pelo cabecalho
         $registro = array_combine($cabecalho, $linha);
 
         //verificando se está faltando alguma coluna no
-        if(isset($registro[NOMEITEM])==0||$registro[LOCALIZACAO]==0||$registro[ORIGEM]==0||$registro[DESTINO]==0||$registro[TIPO]==0||$registro[QUANTIDADE]==0||$registro[DESCRICAO]==0||$registro[PATRIMONIO]==0||$registro[NR_SERIE]==0||$registro[id]==0||$registro[id]==0||$registro[MOTIVO]==0||$registro[PROTOCOLO]==0||$registro[gms]==0){
-            echo"Está faltando campos no Arquivo";
-            exit;
+        if(@$registro['NOMEITEM']==""||@$registro['LOCALIZACAO']==""||@$registro['ORIGEM']==""||@$registro['DESTINO']==""||@$registro['TIPO']==""||@$registro['QUANTIDADE']==""||@$registro['DESCRICAO']==""||@$registro['DATA']==""||@$registro['PATRIMONIO']==""||@$registro['NR_SERIE']==""||@$registro['id']==""||@$registro['MOTIVO']==""||@$registro['PROTOCOLO']==""||@$registro['gms']==""){
+          echo "<script>alert('Estão faltando colunas no csv ');history.back()</script>";
+          exit;
         }
-
      
 switch($tabela){
 
@@ -61,6 +62,15 @@ switch($tabela){
        
        
         $pesq = mysqli_query($conn, $result_usuario);
+        
+        if($pesq==0){
+          $cont++;
+          echo"<script>alert(Erro ao Importar $registro[NOMEITEM] );</script>";
+        }else
+        {
+          $cont1++; // conta quantas importações foram feitas
+        }
+
 
       }catch(Exception $e){echo 'Exceção capturada: ',  $e->getMessage(), "\n";};
 
@@ -108,6 +118,13 @@ switch($tabela){
     
   
 }
+if($cont==0 && $cont1==0){
+  
+  echo "<script>alert('Todas Importações tiveram erro');history.back()</script>";
+}else{
+  echo "<script>alert('Um total de $cont1 importações foram feitas');history.back()</script>";
+}
+
 
 fclose($f);
 

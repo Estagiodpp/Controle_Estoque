@@ -14,6 +14,8 @@ class Export{
         $fileName = $fileName . '.xls';
         // Abrindo tag tabela e criando título da tabela
         $html = '';
+        $html= '<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        </head>';
         $html .= '<table border="1">';
         $html .= '<tr>';
         $html .= '<th colspan="' . count($data) . '">' . $name . '</th>';

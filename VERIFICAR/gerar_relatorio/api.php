@@ -13,10 +13,12 @@ $tipo=$_POST['tipo'];
 // aqui uma tratativa caso o campo venha em formato json
 //cria um html para renderizar
 //se nao no else so printa o hyml e chama o metodo
-if($tipo=="garantia"){
+if($tipo=="garantia" ||$tipo=="Sedes" ||$tipo=="Relatórios"){
 $data= json_decode($data);
 
 $html = '';
+$html= '<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>';
         $html .= '<table border="1">';
         $html .= '<tr>';
         $html .= '<th colspan="' . count($data) . '">' . $tipo . '</th>';
@@ -35,6 +37,10 @@ for($i=0; $i < count($data); $i++){
         $html .= '<td>' . $v . '</td>';
     }
     $html .= '</tr>';
+
+
+
+    
 }
 $html .= '</table>';
 $data=$html;

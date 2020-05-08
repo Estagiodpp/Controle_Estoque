@@ -181,6 +181,11 @@ echo" Não há ações relacionadas a este item";
                       </tr>
                     </thead>
                     <tbody>
+                 
+                 <?php
+                    $data=[];//inicializando array e interador
+                    $i=0;
+                 ?>
                       <?php do {
 
                         $dataformat = date('d/m/Y', strtotime($produto['DATA'])); //formata as datas
@@ -197,10 +202,57 @@ echo" Não há ações relacionadas a este item";
                           <td align="center"><?php echo $produto['ip']; ?></td>
 
                         </tr>
-   
+   <?php
+      $data[$i]['NOMEITEM']=$produto['NOMEITEM'];
+      $data[$i]['TIPO']=$produto['TIPO'];
+      $data[$i]['DESCRICAO']=$produto['DESCRICAO'];
+      $data[$i]['QUANTIDADE'] = $produto['QUANTIDADE'];
+      $data[$i]['ORIGEM'] = $produto['ORIGEM'];
+      $data[$i]['DESTINO'] =$produto['DESTINO'];
+      $data[$i]['dataformat'] = $dataformat;
+      $data[$i]['PROTOCOLO'] = $produto['PROTOCOLO'];
+      $data[$i]['ip'] = $produto['ip'];
+      $data[$i]['DESTINO'] = $produto['DESTINO'];
 
+      $i++;
+      ?>
 
                       <?php } while ($produto = $execute->fetch_assoc()); ?>
+
+
+                      <?php     
+
+//$data1=json_encode($data);
+    // esse json encode é muito bom , simples assim  usando isso agora o $data1 esta 
+    //em formato json
+    // se quiser mandar para outra pagina é simples 
+    //basta fazer igual ao esquema do html abaixo
+    // mandar pelo input e esconder o campo com type hidden
+    // e na outra pagina para recupar é só necessário usar a função json_decode($var);
+
+
+    include_once("../VERIFICAR/gerar_relatorio/Export.php");
+
+    //chama  a classe de exportação  passando  o nome da tabela , nome do arquivo , e o array
+  
+    // esse método gera um html , então como esta pagina tem um estilo de pagina proprio
+    // é bom e necessário enviar para outra página qeu fará a tratativa  pelo form que 
+    //quando chamado joga para esse outra pagina a variavel com o conteudo html que esta
+    // dentro do input escondido.
+
+    $data= json_encode($data);
+    echo"<form action='../VERIFICAR/gerar_relatorio/api.php' method='POST'>";
+    echo"<input  type='submit' value='Gerar Excel'>";
+    echo"<input name='almox' type='hidden' value='$data'>";
+    echo"<input name='tipo' type='hidden' value='Relatórios'>";
+    echo"</form>";
+
+
+
+
+
+
+?>
 
 
                     </tbody>

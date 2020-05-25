@@ -48,16 +48,13 @@ switch($tabela){
     case "controle":
 
            //verificando se está faltando alguma coluna no
-                if(@$registro['NOMEITEM']==""||@$registro['LOCALIZACAO']==""||@$registro['ORIGEM']==""||@$registro['DESTINO']==""||@$registro['TIPO']==""||@$registro['QUANTIDADE']==""||@$registro['DESCRICAO']==""||@$registro['DATA']==""||@$registro['PATRIMONIO']==""||@$registro['NR_SERIE']==""||@$registro['id']==""||@$registro['MOTIVO']==""||@$registro['PROTOCOLO']==""||@$registro['gms']==""){
-                  echo "<script>alert('Estão faltando colunas no csv ');history.back()</script>";
-                  exit;
-                }
+            
 
 
             try{
-                $result_usuario = "INSERT INTO controle(NOMEITEM,LOCALIZACAO,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,id,MOTIVO,PROTOCOLO,gms)
+                $result_usuario = "INSERT INTO controle(NOMEITEM,DESCRICAO,QUANTIDADE,LOCALIZACAO,ORIGEM,DESTINO,TIPO,DATA,PATRIMONIO,NR_SERIE,id,MOTIVO,PROTOCOLO,gms)
 
-                VALUES('$registro[NOMEITEM]','$registro[LOCALIZACAO]','$registro[ORIGEM]','$registro[DESTINO]','$registro[TIPO]','$registro[QUANTIDADE]','$registro[DESCRICAO]',NOW(),'$registro[PATRIMONIO]','$registro[NR_SERIE]','$registro[id]','$registro[MOTIVO]','$registro[PROTOCOLO]','$registro[gms]')";
+                VALUES('$registro[NOMEITEM]','$registro[DESCRICAO]','$registro[QUANTIDADE]','$registro[LOCALIZACAO]','$registro[ORIGEM]','$registro[DESTINO]','$registro[TIPO]',NOW(),'$registro[PATRIMONIO]','$registro[NR_SERIE]','$registro[ID]','$registro[MOTIVO]','$registro[PROTOCOLO]','$registro[GMS]')";
                
                
                 $pesq = mysqli_query($conn, $result_usuario);
@@ -79,8 +76,8 @@ switch($tabela){
 
               // primeira faz verificações de colunas das planilha
 
-               if(@$registro['NOMEITEM']==""||@$registro['LOCALIZACAO']==""||@$registro['ORIGEM']==""||@$registro['DESTINO']==""||@$registro['TIPO']==""||@$registro['QUANTIDADE']==""||@$registro['DESCRICAO']==""||@$registro['DATA']==""||@$registro['PATRIMONIO']==""||@$registro['NR_SERIE']==""||@$registro['MOTIVO']==""||@$registro['PROTOCOLO']==""||@$registro['gms']==""){
-                    echo "<script>alert('Estão faltando colunas no csv ');history.back()</script>";
+               if(@$registro['NOMEITEM']==""||@$registro['DESCRICAO']==""||@$registro['QUANTIDADE']==""||@$registro['LOCALIZACAO']==""||@$registro['ORIGEM']==""||@$registro['DESTINO']==""||@$registro['TIPO']==""||@$registro['DATA']==""||@$registro['PATRIMONIO']==""||@$registro['NR_SERIE']==""||@$registro['MOTIVO']==""||@$registro['PROTOCOLO']==""||@$registro['GMS']==""){
+                  echo "<script>alert('Existem campos em branco ,se não souber coloque ex: null ');history.back()</script>";
                     exit;
                   }
 
@@ -88,9 +85,9 @@ switch($tabela){
           // faz o insert na tabela com try cat caso houver erro
 
           try{
-            $result_usuario = "INSERT INTO controle_prot(NOMEITEM,LOCALIZACAO,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,gms)
+            $result_usuario = "INSERT INTO controle_prot(NOMEITEM,DESCRICAO,QUANTIDADE,LOCALIZACAO,ORIGEM,DESTINO,TIPO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,gms)
 
-            VALUES('$registro[NOMEITEM]','$registro[LOCALIZACAO]','$registro[ORIGEM]','$registro[DESTINO]','$registro[TIPO]','$registro[QUANTIDADE]','$registro[DESCRICAO]',NOW(),'$registro[PATRIMONIO]','$registro[NR_SERIE]','$registro[MOTIVO]','$registro[PROTOCOLO]','$registro[gms]')";
+            VALUES('$registro[NOMEITEM]','$registro[DESCRICAO]','$registro[QUANTIDADE]','$registro[LOCALIZACAO]','$registro[ORIGEM]','$registro[DESTINO]','$registro[TIPO]',NOW(),'$registro[PATRIMONIO]','$registro[NR_SERIE]','$registro[MOTIVO]','$registro[PROTOCOLO]','$registro[GMS]')";
            
            
             $pesq = mysqli_query($conn, $result_usuario);
@@ -145,7 +142,7 @@ switch($tabela){
         
  
  if(@$registro['id']==""||@$registro['nomesede']==""||@$registro['endereco']==""||@$registro['nr']==""||@$registro['cep']==""||@$registro['local']==""){
-                      echo "<script>alert('Estão faltando colunas no csv  ');history.back()</script>";
+                     echo "<script>alert('Existem campos em branco ,se não souber coloque ex: null ');history.back()</script>";
                       exit;
                     }
             // faz o insert na tabela com try cat caso houver erro
@@ -191,7 +188,7 @@ if($cont==0 && $cont1==0){
   
   echo "<script>alert('Todas Importações tiveram erro!');history.back()</script>";
 }else{
-  echo "<script>alert('Total de importações : $cont1  ');history.back()</script>";
+  echo "<script>alert('$cont1 Importações feitas');history.back()</script>";
 }
 
 

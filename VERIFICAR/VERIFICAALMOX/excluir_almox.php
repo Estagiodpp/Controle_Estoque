@@ -4,7 +4,7 @@ include_once("../../conexao.php");
 $id = $_GET['id'];
 $loc = $_GET['loc'];
 $nomeitem = $_GET['nomeitem'];
-$sql = "DELETE FROM controle WHERE id = $id";
+
 
 
 	$newpesquisa = "Select * from controle where id='$id' ";
@@ -23,8 +23,8 @@ $sql = "DELETE FROM controle WHERE id = $id";
 		$SERIE = $registro[9];
 		$protocolo=$registro[11];
 	}
-
-$update = mysqli_query($conn,$sql);
+	$sql = "DELETE FROM controle WHERE id = $id";
+    $update = mysqli_query($conn,$sql);
 
 if($update){
 
@@ -35,8 +35,8 @@ $pat="0";
 $DESTINO="NULL";
 $MOTIVO="NULL";
 
-$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,ip,acao)
-values('$nomeitemBANCO','$origem','$DESTINO','$tipo','$qtd','$descricao',now(),'$pat','$SERIE','$MOTIVO','$protocolo','$ip','$acao')
+$historico = "Insert into history(NOMEITEM,LOCALIZACAO,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,ip,acao)
+values('$nomeitemBANCO','$loc','$origem','$DESTINO','$tipo','$qtd','$descricao',now(),'$pat','$SERIE','$MOTIVO','$protocolo','$ip','$acao')
 ";
 			$pesq = mysqli_query($conn, $historico);
 

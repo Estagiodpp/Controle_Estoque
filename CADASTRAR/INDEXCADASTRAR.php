@@ -46,11 +46,7 @@
             <p align="center"> Defensoria Pública do Estado do Paraná</p><br>
         </div>
 
-        <div class="ul2">
-            <li><a class="active" href="../PRINCIPAL">Inicio</a></li>
-            <li><a href="../VERIFICAR/INDEXVERIFICAR.php">Verificar</a></li>
-            <li><a href="../MOVIMENTAR/INDEXMOVIMENTAR.php">Movimentar</a></li>
-        </div>
+        <?php include_once("../PRINCIPAL/menu.html");?>
 
         <div class="wrapper wrapper--w790">
             <div class="card card-5">

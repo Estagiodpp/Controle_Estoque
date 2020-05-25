@@ -47,15 +47,15 @@
 
         </div>
         <div class="ul2">
-            <li><a class="active" href="../../PRINCIPAL">Inicio</a></li>
-            <li><a href="../../CADASTRAR/INDEXCADASTRAR.php">Cadastrar</a></li>
-            <li><a href="../../MOVIMENTAR/INDEXMOVIMENTAR.php">Movimentar</a></li>
+        <li><a class="active" href="../../PRINCIPAL">Inicio</a></li>
+            <li><a href="../VERIFICAR/INDEXVERIFICAR.php">Verificar Garantia</a></li>
+            <li><a href="../CADASTRAR/INDEXCADASTRAR.php">Cadastrar Garantia</a></li>  
         </div>
 
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Consultar Estoque</h2>
+                    <h2 class="title">Consultar Estoque Garantia</h2>
                 </div>
 
                 <div class="card-body">

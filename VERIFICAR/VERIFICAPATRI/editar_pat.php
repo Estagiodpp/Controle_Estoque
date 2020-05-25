@@ -36,6 +36,7 @@ $pat = $_GET['pat'];
             $id = $array['PATRIMONIO'];
             $gms = $array['gms'];
             $prot = $array['PROTOCOLO'];
+            $SERIE = $array['NR_SERIE'];
         ?>
 
 
@@ -77,6 +78,13 @@ $pat = $_GET['pat'];
                     <h5>Data</h5>
                 </label>
                 <input class="input--style-5" type="date-time" class="form-control" id="datapat" name="datapat" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $data ?>">
+            </div>
+
+               <div class="form-group">
+                <label for="quantidadeProduto">
+                    <h5>Número de Série</h5>
+                </label>
+                <input class="input--style-5" type="date-time" class="form-control" id="datapat" name="SERIE" placeholder="Digite o numero de serie" autocomplete="off" value="<?= $SERIE ?>">
             </div>
 
 

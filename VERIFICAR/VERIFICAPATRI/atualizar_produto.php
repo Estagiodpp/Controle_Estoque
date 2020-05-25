@@ -11,6 +11,7 @@ $prot=$_POST['prot'];
 $pat = $_POST['idpat'];
 $locatual=$_POST['localizacao1'];
 $patselect=$_POST['pat'];
+$SERIE=$_POST['SERIE'];
 
 
 
@@ -23,13 +24,12 @@ $update = mysqli_query($conn,$sql);
 if($update){
 
 
-$ip=$_SERVER['REMOTE_ADDR'];
+$ip= $_SERVER["REMOTE_ADDR"];
 $acao="Alteração";
 $tipo="Patrimonio";
-$pat="0";
 //aqui faz o historico de transferencia na tabela history
-	$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,RESPONSAVEL,ip,acao)
-values('$nomeitemBANCO','$ORIGEM','$DESTINO','$tipo','$QUANTIDADE','$descricao',now(),'$pat','$SERIE','$motivo','$protocolo','$ip','$acao')
+	$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,ip,acao,LOCALIZACAO)
+values('$nome','null','null','$tipo','$quantidadepat ','$descpat',now(),'$pat','$SERIE','$motivo','$protocolo','$ip','$acao','$localpat')
 ";
 $pesq = mysqli_query($conn, $historico);
 

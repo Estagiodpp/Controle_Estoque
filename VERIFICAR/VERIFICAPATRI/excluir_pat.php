@@ -5,9 +5,10 @@ $id = $_GET['id'];
 $pat = $_GET['pat'];
 $loc = $_GET['loc'];
 
-$sql = "DELETE FROM controle_prot WHERE PATRIMONIO = $id";
 
-	$newpesquisa = "Select * from controle_prot where PATRIMONIO='$id' ";
+
+
+$newpesquisa = "Select * from controle_prot where PATRIMONIO='$id' ";
 	$pesq1 = mysqli_query($conn, $newpesquisa);
 
 	while ($registro = mysqli_fetch_array($pesq1)) {
@@ -25,6 +26,7 @@ $sql = "DELETE FROM controle_prot WHERE PATRIMONIO = $id";
 	}
 
 
+$sql = "DELETE FROM controle_prot WHERE PATRIMONIO = $id";
 
 $update = mysqli_query($conn,$sql);
 
@@ -38,8 +40,8 @@ $DESTINO="NULL";
 $MOTIVO="NULL";
 
 
-	$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,ip,acao)
-values('$nomeitemBANCO','$origem','$DESTINO','$tipo','$qtd','$descricao',now(),'$pat','$SERIE','$MOTIVO','$protocolo','$ip','$acao')
+	$historico = "Insert into history(NOMEITEM,LOCALIZACAO,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,ip,acao)
+values('$nomeitemBANCO','$loc','$origem','$DESTINO','$tipo','$qtd','$descricao',now(),'$pat','$SERIE','$MOTIVO','$protocolo','$ip','$acao')
 ";
 			$pesq = mysqli_query($conn, $historico);
 

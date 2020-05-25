@@ -198,28 +198,36 @@
                         $dataformat = date('d/m/Y', strtotime($produto['DATA'])); //formata as datas
                       ?>
                         <tr>
-                          <td align="center"><?php echo $produto['NOMEITEM']; ?></td>
+              <td align="center"><?php echo $produto['NOMEITEM']; ?></td>
                           <td align="center"><?php echo $produto['DESCRICAO']; ?></td>
                           <td align="center"><?php echo $produto['QUANTIDADE']; ?></td>
                           <td align="center"><?php echo $produto['LOCALIZACAO']; ?></td>
+                          <td  style='display:none'align="center"><?php echo $produto['ORIGEM']; ?></td>
+                          <td style='display:none' align="center"><?php echo $produto['DESTINO']; ?></td>
+                          <td style='display:none' align="center"><?php echo $produto['TIPO']; ?></td>
                           <td align="center"><?php echo $dataformat; ?></td>
                           <td align="center"><?php echo $produto['PATRIMONIO']; ?></td>
                           <td align="center"><?php echo $produto['NR_SERIE']; ?></td>
+                          <td style='display:none' align="center"><?php echo $produto['MOTIVO']; ?></td>
                           <td align="center"><?php echo $produto['PROTOCOLO']; ?></td>
                           <td align="center"><?php echo $produto['gms']; ?></td>
 
                           <?php   
                           //aqui passa todas variaveis da pagia para um array $data que depois será utilizado
                           //para fazer exportação xls
-                          $data[$i]['NOMEITEM']=$produto['NOMEITEM'];
+                           $data[$i]['NOMEITEM']=$produto['NOMEITEM'];
                           $data[$i]['DESCRICAO']=$produto['DESCRICAO'];
                           $data[$i]['QUANTIDADE']=$produto['QUANTIDADE'];
                           $data[$i]['LOCALIZACAO']=$produto['LOCALIZACAO'];
-                          $data[$i]['dataformat']=$dataformat;
+                          $data[$i]['ORIGEM']=$produto['ORIGEM']; 
+                          $data[$i]['DESTINO']=$produto['DESTINO']; 
+                          $data[$i]['TIPO']=$produto['TIPO'];                    
+                          $data[$i]['DATA']=$dataformat;
                           $data[$i]['PATRIMONIO']=$produto['PATRIMONIO'];
                           $data[$i]['NR_SERIE']=$produto['NR_SERIE'];
+                          $data[$i]['MOTIVO']=$produto['MOTIVO'];  
                           $data[$i]['PROTOCOLO']=$produto['PROTOCOLO'];
-                          $data[$i]['gms']=$produto['gms'];
+                          $data[$i]['GMS']=$produto['gms'];
                           $i++;?>
 
 

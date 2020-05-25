@@ -13,10 +13,11 @@
 
   <h2 class="title">Estoque Almoxarifado</h2>
   </div>
+  
   <div class="divtable  table-responsive">
     <table class="table table-responsive  ">
       <tr class="active">
-
+   
 <!DOCTYPE html>
 <html lang=" pt-br">
 
@@ -202,11 +203,17 @@
                           <td align="center"><?php echo $produto['DESCRICAO']; ?></td>
                           <td align="center"><?php echo $produto['QUANTIDADE']; ?></td>
                           <td align="center"><?php echo $produto['LOCALIZACAO']; ?></td>
+                          <td  style='display:none'align="center"><?php echo $produto['ORIGEM']; ?></td>
+                          <td style='display:none' align="center"><?php echo $produto['DESTINO']; ?></td>
+                          <td style='display:none' align="center"><?php echo $produto['TIPO']; ?></td>
                           <td align="center"><?php echo $dataformat; ?></td>
                           <td align="center"><?php echo $produto['PATRIMONIO']; ?></td>
                           <td align="center"><?php echo $produto['NR_SERIE']; ?></td>
+                          <td style='display:none' align="center"><?php echo $produto['id']; ?></td>
+                          <td style='display:none' align="center"><?php echo $produto['MOTIVO']; ?></td>
                           <td align="center"><?php echo $produto['PROTOCOLO']; ?></td>
                           <td align="center"><?php echo $produto['gms']; ?></td>
+                          
 
                          <td><a class='btn-editar btn btn-sm btn-warning' href="editar_almox.php?id=<?php echo $produto['id']; ?>&loc=<?php echo $loc; ?>&nomeitem=<?php echo $nomeitem; ?>" role='button'><i></i>&nbsp&nbsp&nbsp&nbspEditar&nbsp&nbsp&nbsp&nbsp</a>
 
@@ -220,18 +227,30 @@
                           $data[$i]['DESCRICAO']=$produto['DESCRICAO'];
                           $data[$i]['QUANTIDADE']=$produto['QUANTIDADE'];
                           $data[$i]['LOCALIZACAO']=$produto['LOCALIZACAO'];
-                          $data[$i]['dataformat']=$dataformat;
+                          $data[$i]['ORIGEM']=$produto['ORIGEM']; 
+                          $data[$i]['DESTINO']=$produto['DESTINO']; 
+                          $data[$i]['TIPO']=$produto['TIPO'];                    
+                          $data[$i]['DATA']=$dataformat;
                           $data[$i]['PATRIMONIO']=$produto['PATRIMONIO'];
                           $data[$i]['NR_SERIE']=$produto['NR_SERIE'];
+                          $data[$i]['ID']=$produto['id'];  
+                          $data[$i]['MOTIVO']=$produto['MOTIVO'];  
                           $data[$i]['PROTOCOLO']=$produto['PROTOCOLO'];
-                          $data[$i]['gms']=$produto['gms'];
+                          $data[$i]['GMS']=$produto['gms'];
                           $i++;?>
 
                          </tr>
                       <?php } while ($produto = $execute->fetch_assoc()); ?>
 
                       
-                      <?php
+          
+      
+
+                    </tbody>
+                  </table>
+
+
+            <?php
 
 
                       //$data1=json_encode($data);
@@ -246,26 +265,24 @@
                       include_once("../gerar_relatorio/Export.php");
 
               //chama  a classe de exportação  passando  o nome da tabela , nome do arquivo , e o array
-              $Export = new Export;
-              $html=$Export->excel('Tabela Almoxarifado','export',$data);
+           
 
               
               // esse método gera um html , então como esta pagina tem um estilo de pagina proprio
               // é bom e necessário enviar para outra página qeu fará a tratativa  pelo form que 
               //quando chamado joga para esse outra pagina a variavel com o conteudo html que esta
               // dentro do input escondido.
-              echo"<form action='../gerar_relatorio/api.php' method='POST'>";
+
+                  
+              $Export = new Export;
+              $html=$Export->excel('Tabela Almoxarifado','export',$data);
+   
+        echo"<form action='../gerar_relatorio/api.php' method='POST'>";
               echo"<input  type='submit' value='Gerar Excel'>";
               echo"<input name='almox'type='hidden' value='$html'>";
               echo"<input name='tipo'type='hidden' value='almox'>";
               echo"</form>";
               ?>
-
-                    </tbody>
-                  </table>
-           
-   
-
 
                   <nav>
                     <ul class="pagination">

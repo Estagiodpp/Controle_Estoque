@@ -33,6 +33,7 @@ $nomitem = $_GET['nomeitem'];
             $desc = $array['DESCRICAO'];
             $data = $array['DATA'];
             $id = $array['id'];
+            $SERIE = $array['NR_SERIE'];
             $gms = $array['gms'];
             $prot = $array['PROTOCOLO'];
         ?>
@@ -77,7 +78,12 @@ $nomitem = $_GET['nomeitem'];
                 </label>
                 <input class="input--style-5" type="date-time" class="form-control" id="datalmox" name="dataalmox" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $data ?>">
             </div>
-
+            <div class="form-group">
+                <label for="quantidadeProduto">
+                    <h5>Número de Serie</h5>
+                </label>
+                <input class="input--style-5" type="date-time" class="form-control" id="datalmox" name="SERIE" placeholder="Digite o Numero de Serie" autocomplete="off" value="<?= $SERIE ?>">
+            </div>
 
             <div class="form-group">
                 <label for="quantidadeProduto">

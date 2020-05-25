@@ -46,9 +46,9 @@
         </div>
 
         <div class="ul2">
-            <li><a class="active" href="../../PRINCIPAL">Inicio</a></li>
-            <li><a href="../../VERIFICAR/INDEXVERIFICAR.php">Verificar</a></li>
-            <li><a href="../../MOVIMENTAR/INDEXMOVIMENTAR.php">Movimentar</a></li>
+        <li><a class="active" href="../../PRINCIPAL">Inicio</a></li>
+            <li><a href="../VERIFICAR/INDEXVERIFICAR.php">Verificar Garantia</a></li>
+            <li><a href="../CADASTRAR/INDEXCADASTRAR.php">Cadastrar Garantia</a></li>  
         </div>
 
         <div class="wrapper wrapper--w790">

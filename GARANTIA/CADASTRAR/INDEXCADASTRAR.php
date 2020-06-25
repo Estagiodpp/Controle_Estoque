@@ -89,21 +89,28 @@
 
                                             <select id="selenome" name="NOMEITEM">
                                                 <option id="esc" selected="selected">Escolha uma opção</option>
-                                                <option>Nao Existem Produtos</option 
+                                              
+
+
 <?php
                     include_once('../../conexao.php');
 
-                    $result_select = "SELECT  NOMEITEM ,id  from controle   ";
+
+                    $result_select = "SELECT  NOMEITEM   from controle   ";
                     $pesq = mysqli_query($conn, $result_select);
 
                     while ($registro = mysqli_fetch_array($pesq)) {
-                        echo "<option> $registro[0] </option>";
+
+
+                        
+                       
+                        if($registro[0]==""){
+                              echo"<option> Nao Existem Produtos </option ";
+                        }else{
+                            echo "<option> $registro[0] </option>";
+                        }
                     }
 
-
-if($pesq==0){
-    echo "<option>Nao existe Produtos</option>";
-}
 
                     ?> </select> <div class="select-dropdown">
                                         </div>
@@ -112,6 +119,48 @@ if($pesq==0){
                             </div>
                         </div>
                 </div>
+
+
+
+
+
+                           <div id="LOCALIZACAO">
+
+                            <div class="form-row">
+                                <div class="name">Localização</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <div class="rs-select2 js-select-simple">
+
+                                            <select id="selenome" name="loc">
+                                                <option id="esc" selected="selected">Escolha uma opção</option>
+
+<?php
+                    include_once('../../conexao.php');
+
+
+                    $result_select = "SELECT  LOCALIZACAO  from controle  ";
+                    $pesq = mysqli_query($conn, $result_select);
+
+                    while ($registro1 = mysqli_fetch_array($pesq)) {
+
+
+                            if($registro1[0]==""){
+                              echo"<option> Nao Existe localização </option> ";
+                        }else{
+                            echo "<option> $registro1[0] </option>";
+                        }
+                    }
+
+
+                    ?> </select> <div class="select-dropdown">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
 
 
 
@@ -133,6 +182,7 @@ if($pesq==0){
                         var dois = document.getElementById('pat')
                         var tres = document.getElementById('almox')
                         var quatro = document.getElementById('inp')
+                        var loc = document.getElementById('LOCALIZACAO')
                         var n1 = String(um.value)
                         var texto = `${n1}`
 
@@ -142,10 +192,14 @@ if($pesq==0){
 
                             nome.style.visibility = "hidden"
                             quatro.style.visibility = "visible"
+                            loc.style.visibility = "hidden"
+
 
                         } else {
                             nome.style.visibility = "visible"
                             quatro.style.visibility = "hidden"
+                            loc.style.visibility = "visible"
+
 
                             document.getElementById('patri').value = 0;
 

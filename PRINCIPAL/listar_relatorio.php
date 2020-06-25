@@ -209,9 +209,9 @@ echo" Não há ações relacionadas a este item";
       $data[$i]['QUANTIDADE'] = $produto['QUANTIDADE'];
       $data[$i]['ORIGEM'] = $produto['ORIGEM'];
       $data[$i]['DESTINO'] =$produto['DESTINO'];
-      $data[$i]['dataformat'] = $dataformat;
+      $data[$i]['DATA'] = $dataformat;
       $data[$i]['PROTOCOLO'] = $produto['PROTOCOLO'];
-      $data[$i]['ip'] = $produto['ip'];
+      $data[$i]['IP'] = $produto['ip'];
       $data[$i]['DESTINO'] = $produto['DESTINO'];
 
       $i++;

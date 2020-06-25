@@ -88,12 +88,12 @@
                 </td>
 
 <?php
-      $data[$i]['id']=$array['id'];
-      $data[$i]['nomesede']=$array['nomesede'];
-      $data[$i]['endereco']=$array['endereco'];
-      $data[$i]['nr'] = $array['nr'];
-      $data[$i]['cep'] = $array['cep'];
-      $data[$i]['local'] = $array['local'];
+      $data[$i]['ID']=$array['id'];
+      $data[$i]['NOMESEDE']=$array['nomesede'];
+      $data[$i]['ENDERECO']=$array['endereco'];
+      $data[$i]['NR'] = $array['nr'];
+      $data[$i]['CEP'] = $array['cep'];
+      $data[$i]['LOCAL'] = $array['local'];
       $i++;
 
 

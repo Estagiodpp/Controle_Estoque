@@ -1,12 +1,15 @@
 
 <?php
-include_once("../../conexao.php");
+include_once("../conexao.php");
 $NOMEITEM = $_POST['NOMEITEM'];
 $TIPO = $_POST['TIPO'];
 $DESCRICAO = $_POST['DESCRICAO'];
 $patrimonio = $_POST['Patrimonio'];
 $datainicio = $_POST['data'];
 $datafim = $_POST['datafim'];
+$loc = $_POST['loc'];
+
+
 
 if ($TIPO == "" || $TIPO == "Escolha uma opção" ||  $DESCRICAO == "" || $datainicio == "") {
   echo "<script> alert('Preencha todos os campos') ;</script>";
@@ -36,55 +39,79 @@ if($suaString =="nao existem produtos"){
 
 
 
-  //todos seleciona o id e pat para verificar se aj existe no banco 
-  $result_select = "SELECT  pat ,id from garantia ";
+
+
+
+
+if($TIPO=='Almoxarifado'){
+
+
+
+ $result_usuario = "INSERT INTO garantia(data_ex,descricao ,data_ini,NOMEITEM,LOCALIZACAO)
+
+ VALUES('$datafim','$DESCRICAO','$datainicio','$NOMEITEM','$loc')";
+
+
+
+}else{
+
+     //todos seleciona o id  verificar se aj existe no banco 
+  $result_select = "SELECT  LOCALIZACAO from controle_prot where PATRIMONIO ='$patrimonio' ";
   $pesq = mysqli_query($conn, $result_select);
 
   while ($registro = mysqli_fetch_array($pesq)) {
 
-    $patbanco = $registro[0];
-    $idbanco = $registro[1];
+    $LOCALIZACAO_gr2=$registro[0];
+    
   }
+if($LOCALIZACAO_gr2==""){
+  $LOCALIZACAO_gr2="local_padrao";
+}
+  
+   $result_usuario = "INSERT INTO garantia_pat(data_ex,descricao ,data_ini,pat,NOMEITEM,LOCALIZACAO)
+
+ VALUES('$datafim','$DESCRICAO','$datainicio','$patrimonio','$NOMEITEM','$LOCALIZACAO_gr2')";
 
 
 
 
-  //seleciona o id do item de almoxarifado escolhido
-  $result_select1 = "SELECT  id  from controle where NOMEITEM='$NOMEITEM' ";
-  $pesq1 = mysqli_query($conn, $result_select1);
-  while ($registro = mysqli_fetch_array($pesq1)) {
-
-    $idbanco = $registro[0];
-  }
+}
 
 
 
-  if ($TIPO == "Patrimonio") {
-
-    $idbanco = 0;
-  }
-
-  if ($patbanco == $patrimonio && $patbanco != 0) {
-    echo "o patrimonio ja existe no banco";
-    exit;
-  } else {
 
 
 
-    $result_usuario = "INSERT INTO garantia(id,data_ex,descricao ,data_ini,pat)
 
- VALUES('$idbanco','$datafim','$DESCRICAO','$datainicio','$patrimonio')";
+
+ 
+
+
+ 
+
+
 
     $pesq = mysqli_query($conn, $result_usuario);
 
+if($pesq ){
 
-
-
-    echo "<script> alert('Cadastro feito com sucesso! $suaString') ;</script>";
+   echo "<script> alert('Cadastro feito com sucesso! ') ;</script>";
 
     echo "<script>history.go(-1)</script>";
-  }
+
+}else{
+
+
+
 }
+
+
+
+   
+  
+}
+
+
 
 
 ?>

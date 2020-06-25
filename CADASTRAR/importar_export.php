@@ -21,7 +21,14 @@ public function importar($caminho,$nome_arquivo,$tabela,$tipo){
     // Abrir arquivo para leitura
     $f = fopen($caminho, 'r');
 
-var_dump($nome_arquivo);
+
+
+//* MEU DEBUG
+//var_dump($nome_arquivo);
+
+
+
+
 if ($f) { 
 
     // Ler cabecalho do arquivo
@@ -41,7 +48,11 @@ if ($f) {
         // Montar registro com valores indexados pelo cabecalho
         $registro = array_combine($cabecalho, $linha);
 
-     
+      $data_ini = str_replace("/", "-",$registro['DATA_INI'] );
+ $data_ini=date('Y/m/d', strtotime($data_ini));
+
+ $data_ex = str_replace("/", "-",$registro['DATA_EX'] );
+ $data_ex =date('Y/m/d', strtotime($data_ex));
      
 switch($tabela){
 
@@ -76,11 +87,15 @@ switch($tabela){
 
               // primeira faz verificações de colunas das planilha
 
-               if(@$registro['NOMEITEM']==""||@$registro['DESCRICAO']==""||@$registro['QUANTIDADE']==""||@$registro['LOCALIZACAO']==""||@$registro['ORIGEM']==""||@$registro['DESTINO']==""||@$registro['TIPO']==""||@$registro['DATA']==""||@$registro['PATRIMONIO']==""||@$registro['NR_SERIE']==""||@$registro['MOTIVO']==""||@$registro['PROTOCOLO']==""||@$registro['GMS']==""){
+             /*
+
+validao desativado*/
+
+     /*          if(@$registro['NOMEITEM']==""||@$registro['DESCRICAO']==""||@$registro['QUANTIDADE']==""||@$registro['LOCALIZACAO']==""||@$registro['ORIGEM']==""||@$registro['DESTINO']==""||@$registro['TIPO']==""||@$registro['DATA']==""||@$registro['PATRIMONIO']==""||@$registro['NR_SERIE']==""||@$registro['MOTIVO']==""||@$registro['PROTOCOLO']==""||@$registro['GMS']==""){
                   echo "<script>alert('Existem campos em branco ,se não souber coloque ex: null ');history.back()</script>";
                     exit;
                   }
-
+*/
 
           // faz o insert na tabela com try cat caso houver erro
 
@@ -106,6 +121,10 @@ switch($tabela){
     
         break;
  
+
+
+
+// faz insert na tabela de garantia de almoxarifado
         case "garantia":
 
       
@@ -114,9 +133,44 @@ switch($tabela){
             // faz o insert na tabela com try cat caso houver erro
 
             try{
-              $result_usuario = "INSERT INTO garantia(id,data_ex,descricao,data_ini,pat)
+              $result_usuario = "INSERT INTO garantia(data_ini,data_ex,descricao,NOMEITEM,LOCALIZACAO)
 
-              VALUES('$registro[id]','$registro[data_ex]','$registro[descricao]','$registro[data_ini]','$registro[pat]')";
+              VALUES('$data_ini','$data_ex','$registro[DESCRICAO]','$registro[NOMEITEM]','$registro[LOCALIZACAO]')";
+             
+             
+              $pesq = mysqli_query($conn, $result_usuario);
+
+            //faz contador para ver quantos registros foram inseridos caso tenha dado certo
+
+              if($pesq==0){
+                $cont++;
+                echo"<script>alert(Erro ao Importar  );</script>";
+              }else
+              {
+                $cont1++; // conta quantas importações foram feitas
+              }
+                
+
+
+
+    }catch(Exception $e){echo 'Exceção capturada: ',  $e->getMessage(), "\n";};
+        
+        break;
+
+
+
+// faz insert na tabela de garantia de patrimonios
+        case "garantia_pat":
+
+      
+
+
+            // faz o insert na tabela com try cat caso houver erro
+
+            try{
+              $result_usuario = "INSERT INTO garantia_pat(data_ini,data_ex,descricao,pat,NOMEITEM,LOCALIZACAO)
+
+              VALUES('$data_ini','$data_ex','$registro[DESCRICAO]','$registro[PAT]','$registro[NOMEITEM]','$registro[LOCALIZACAO]')";
              
              
               $pesq = mysqli_query($conn, $result_usuario);
@@ -141,16 +195,16 @@ switch($tabela){
         case "sedes":
         
  
- if(@$registro['id']==""||@$registro['nomesede']==""||@$registro['endereco']==""||@$registro['nr']==""||@$registro['cep']==""||@$registro['local']==""){
+ if(@$registro['ID']==""||@$registro['NOMESEDE']==""||@$registro['ENDERECO']==""||@$registro['NR']==""||@$registro['CEP']==""||@$registro['LOCAL']==""){
                      echo "<script>alert('Existem campos em branco ,se não souber coloque ex: null ');history.back()</script>";
                       exit;
                     }
             // faz o insert na tabela com try cat caso houver erro
 
             try{
-              $result_usuario = "INSERT INTO sedes()
+              $result_usuario = "INSERT INTO sedes(id,nomesede,endereco,nr,cep,local)
 
-              VALUES('$registro[id]','$registro[nomesede]','$registro[endereco]','$registro[nr]','$registro[cep]','$registro[local]')";
+              VALUES('$registro[ID]','$registro[NOMESEDE]','$registro[ENDERECO]','$registro[NR]','$registro[CEP]','$registro[LOCAL]')";
              
              
               $pesq = mysqli_query($conn, $result_usuario);
@@ -184,6 +238,7 @@ switch($tabela){
 }
 
 //mostra se teve erro ao importar e a quantidade de importações feitas
+
 if($cont==0 && $cont1==0){
   
   echo "<script>alert('Todas Importações tiveram erro!');history.back()</script>";

@@ -30,9 +30,13 @@ elseif($tipo=="Patrimonio"){
 	$importar->importar($temp,$dados,"controle_prot",$tipo);
 }
 
-elseif($tipo=="garantia"){
+elseif($tipo=="garantia_almox"){
 
 	$importar->importar($temp,$dados,"garantia",$tipo);
+}
+elseif($tipo=="garantia_pat"){
+
+  $importar->importar($temp,$dados,"garantia_pat",$tipo);
 }
 
 elseif($tipo=="sedes"){

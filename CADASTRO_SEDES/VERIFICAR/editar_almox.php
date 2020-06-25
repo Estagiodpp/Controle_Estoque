@@ -14,11 +14,8 @@ $id = $_GET['id'];
 
 
         <form action="atualizar_produto.php" method="POST">
-            
-
             <?php
-            // faz consulta somente para retonar o tipo  do item que esta sendo alterado a garantia
-            $sql = "SELECT * FROM controle_prot WHERE PATRIMONIO = $id";
+            $sql = "SELECT * FROM controle WHERE Id = $id";
             $retorno = mysqli_query($conn, $sql);
 
             while ($array = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
@@ -27,8 +24,10 @@ $id = $_GET['id'];
             ?>
 
 
-                  <?php
-            $sql = "SELECT * FROM garantia_pat WHERE pat = $id";
+
+
+                 <?php
+            $sql = "SELECT * FROM garantia WHERE id = $id";
             $retorno = mysqli_query($conn, $sql);
 
             while ($array1 = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
@@ -39,26 +38,25 @@ $id = $_GET['id'];
 
             ?>
 
-
          
 
-<h2 class="title">Editar Patrimônio</h2>
+<h2 class="title">Editar <?= $TIPO?></h2>
     </div>
     <div class="divtable ">
 
-                <div class="form-group">
-        <div class="form-group">
+
+
+    <div class="form-group">
+
                     <label for="quantidadeProduto">
-                        <h4>Patrimonio</h4>
+                        <h4>id</h4>
                     </label>
-                    <input class="input--style-5" type="text" class="form-control" id="patalmox" name="idpat" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $pat ?>">
+                    <input class="input--style-5" type="number" class="form-control" id="idalmox" name="idalmox" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $id ?>">
+
                 </div>
 
                 <div class="form-group">
                     <label for="nomeProduto">
-
-<input  type="hidden"  id="id_almox" name="idalmox"  value="<?=0?>">
-
 
                         <h4>Descrição</h4>
                     </label>
@@ -79,7 +77,8 @@ $id = $_GET['id'];
                     <input class="input--style-5" type="date" class="form-control" id="dataex" name="dataex" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $data_ex  ?>">
                 </div>
 
-        
+
+
 
                 <button type="submit" class="btn-enviar btn btn-primary btn-sm btn-block">
                     <h7>Atualizar</h7>

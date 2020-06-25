@@ -31,35 +31,18 @@
   <div class="divtable ">
     <table class="table">
       <tr>
-
         <td class="principal">
           <h4>Id</h4>
-        </td>
-
-
-           <?php if($_POST['TIPO']=="Patrimonio"){
-
-          echo "  <td class='principal'>
-          <h4>Patrimônio</h4>
-        </td>";
-        } else{
-
-
-          echo "   <td class='principal'>
-          <h4>Nome Item</h4>
-        </td>";
-      }
-
-          ?>
-         
-        <td class="principal">
-          <h4>Data de Expiração</h4>
         </td>
         <td class="principal">
           <h4>Descrição</h4>
         </td>
-     
-      
+        <td class="principal">
+          <h4>Data de Expiração</h4>
+        </td>
+        <td class="principal">
+          <h4>Patrimônio</h4>
+        </td>
       </tr>
   </div>
   </div>
@@ -99,40 +82,25 @@
   while ($registro = mysqli_fetch_array($pesq1)) {
     $idbanco = $registro[0];
   }
-  $data=[]; // inicializando array e interador
-  $i=0;
-  
+
 
 // aqui faz as alterações na garantia que é almoxarifado
 
   if ($TIPO == "Almoxarifado") {
     if ($NOMEITEM !== "todos itens") {
 
-      $result_select3 = "SELECT * from garantia where NOMEITEM='$NOMEITEM '";
+      $result_select3 = "SELECT * from garantia where id='$idbanco' ";
       $pesq3 = mysqli_query($conn, $result_select3);
 
       while ($registro3 = mysqli_fetch_array($pesq3)) {
 
         $dataformat=date('d/m/Y', strtotime($registro3[1]));
-        $dataformat2=date('d/m/Y', strtotime($registro3[3]));
-        
-        
-        $data[$i]['ID']=$registro3[0];
-        $data[$i]['NOMEITEM']=$registro3[4];
-        $data[$i]['DATA_EX']=$dataformat;
-        $data[$i]['DESCRICAO']=$registro3[2];
-        $data[$i]['DATA_INI']=$dataformat2;
-        $data[$i]['LOCALIZACAO']=$registro3[5];
-        $i++;
-        
-
         echo "
  <tr>
  <td><h5>$registro3[0]</h5></td>
- <td><h5>$registro3[4]</h5></td>
- <td><h5>$dataformat</h5></td>
  <td><h5>$registro3[2]</h5></td>
- <td style='display:none'><h5>$dataformat2</h5></td>
+ <td><h5>$dataformat</h5></td>
+ <td><h5>$registro3[4]</h5></td>
   <td> 
  <a class='btn-editar btn btn-sm btn-warning' href='../VERIFICAR/editar_almox.php?id=$registro3[0]'
                             role='button'><i class='far fa-edit'></i>&nbspEditar&nbsp</a>
@@ -148,29 +116,18 @@
       }
     } else {
 
-      $result_select4 = "SELECT * from garantia ";
+      $result_select4 = "SELECT * from garantia where id <>'NULL'";
       $pesq4 = mysqli_query($conn, $result_select4);
 
       while ($registro4 = mysqli_fetch_array($pesq4)) {
 
         $dataformat=date('d/m/Y', strtotime($registro4[1]));
-        $dataformat2=date('d/m/Y', strtotime($registro4[3]));
-        
-        $data[$i]['ID']=$registro4[0];
-        $data[$i]['NOMEITEM']=$registro4[4];
-        $data[$i]['DATA_EX']=$dataformat;
-        $data[$i]['DESCRICAO']=$registro4[2];
-        $data[$i]['DATA_INI']=$dataformat2;
-        $data[$i]['LOCALIZACAO']=$registro4[5];
-        $i++;
-        
         echo "
  <tr>
  <td><h5>$registro4[0]</h5></td>
- <td><h5>$registro4[4]</h5></td>
- <td><h5>$dataformat</h5></td>
  <td><h5>$registro4[2]</h5></td>
- <td style='display:none'><h5>$dataformat2</h5></td>
+ <td><h5>$dataformat</h5></td>
+ <td><h5>$registro4[4]</h5></td>
   <td> 
  <a class='btn-editar btn btn-sm btn-warning' href='../VERIFICAR/editar_almox.php?id=$registro4[0]'
                             role='button'><i class='far fa-edit'></i>&nbspEditar&nbsp</a>
@@ -189,33 +146,18 @@
 
 
     if ($Patrimonio != "Todos") {
-      $result_select3 = "SELECT * from garantia_pat where pat='$Patrimonio' ";
+      $result_select3 = "SELECT * from garantia where pat='$Patrimonio' ";
       $pesq3 = mysqli_query($conn, $result_select3);
 
       while ($registro3 = mysqli_fetch_array($pesq3)) {
 
         $dataformat=date('d/m/Y H:i:s', strtotime($registro3[1]));
-        $dataformat2=date('d/m/Y H:i:s', strtotime($registro3[1]));
-
-        
-        $data[$i]['ID']=$registro3[0];
-        $data[$i]['DATA_EX']=$dataformat;
-        $data[$i]['DESCRICAO']=$registro3[2];
-        $data[$i]['DATA_INI']=$dataformat2;
-        $data[$i]['PAT']=$registro3[4];
-        $data[$i]['NOMEITEM']=$registro3[5];
-        $data[$i]['LOCALIZACAO']=$registro3[6];
-        $i++;
-
-        
-        
         echo "
  <tr>
  <td><h5>$registro3[0]</h5></td>
- <td><h5>$registro3[4]</h5></td>
- <td><h5>$dataformat</h5></td>
  <td><h5>$registro3[2]</h5></td>
- <td style='display:none'><h5>$dataformat2</h5></td>
+ <td><h5>$dataformat</h5></td>
+ <td><h5>$registro3[4]</h5></td>
   <td> 
  <a class='btn-editar btn btn-sm btn-warning' href='../VERIFICAR/editar_pat.php?id=$registro3[4]'
                             role='button'><i class='far fa-edit'></i>&nbspEditar&nbsp</a>
@@ -231,35 +173,20 @@
       }
     } else {
 
-      $result_select5 = "SELECT * from garantia_pat";
+      $result_select5 = "SELECT * from garantia where pat<>0";
       $pesq5 = mysqli_query($conn, $result_select5);
 
       while ($registro5 = mysqli_fetch_array($pesq5)) {
 
 
+$dataformat=date('d/m/Y H:i:s', strtotime($registro5[1]));
 
-        $dataformat=date('d/m/Y H:i:s', strtotime($registro5[1]));
-        $dataformat2=date('d/m/Y H:i:s', strtotime($registro5[1]));
-
-     
-        $data[$i]['ID']=$registro5[0];
-        $data[$i]['DATA_EX']=$dataformat;
-        $data[$i]['DESCRICAO']=$registro5[2];
-        $data[$i]['DATA_INI']=$dataformat2;
-        $data[$i]['PAT']=$registro5[4];
-        $data[$i]['NOMEITEM']=$registro5[5];
-        $data[$i]['LOCALIZACAO']=$registro5[6];
-        $i++;
-
-        
-        
         echo "
  <tr>
  <td><h5>$registro5[0]</h5></td>
- <td><h5>$registro5[4]</h5></td>
- <td><h5>$dataformat</h5></td>
  <td><h5>$registro5[2]</h5></td>
- <td style='display:none'><h5>$dataformat2</h5></td>
+ <td><h5>$dataformat</h5></td>
+ <td><h5>$registro5[4]</h5></td>
   <td> 
  <a class='btn-editar btn btn-sm btn-warning' href='../VERIFICAR/editar_pat.php?id=$registro5[4]'
                             role='button'><i class='far fa-edit'></i>&nbspEditar&nbsp</a>
@@ -278,33 +205,6 @@
 
 
 
-  
-
-                //$data1=json_encode($data);
-                // esse json encode é muito bom , simples assim  usando isso agora o $data1 esta 
-                //em formato json
-                // se quiser mandar para outra pagina é simples 
-                //basta fazer igual ao esquema do html abaixo
-                // mandar pelo input e esconder o campo com type hidden
-                // e na outra pagina para recupar é só necessário usar a função json_decode($var);
-
-
-                include_once("../../VERIFICAR/gerar_relatorio/Export.php");
-
-                //chama  a classe de exportação  passando  o nome da tabela , nome do arquivo , e o array
-              
-                // esse método gera um html , então como esta pagina tem um estilo de pagina proprio
-                // é bom e necessário enviar para outra página qeu fará a tratativa  pelo form que 
-                //quando chamado joga para esse outra pagina a variavel com o conteudo html que esta
-                // dentro do input escondido.
-
-                $data= json_encode($data);
-                echo"<form action='../../VERIFICAR/gerar_relatorio/api.php' method='POST'>";
-                echo"<input  type='submit' value='Gerar Excel'>";
-                echo"<input name='almox' type='hidden' value='$data'>";
-                echo"<input name='tipo' type='hidden' value='garantia'>";
-                echo"</form>";
-
 
 
 
@@ -320,6 +220,7 @@
   </div>
   </div>
   </div>
+
 
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->

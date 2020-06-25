@@ -2,7 +2,7 @@
 include_once("../../conexao.php");
 
 $id = $_GET['id'];
-$sql = "DELETE FROM garantia_pat WHERE pat= $id";
+$sql = "DELETE FROM garantia WHERE pat= $id";
 $update = mysqli_query($conn,$sql);
 
 if($update){

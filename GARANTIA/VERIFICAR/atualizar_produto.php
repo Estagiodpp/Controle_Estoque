@@ -1,15 +1,16 @@
 <?php
-include_once("../../conexao.php");
+include_once("../conexao.php");
 
 @$idalmox = $_POST['idalmox'];
+@$idpat =$_POST['idpat'];
+
 $descalmox= $_POST['descalmox'];
 $dataini= $_POST['dataini'];
 $dataex = $_POST['dataex'];
-$idpat =$_POST['idpat'];
 
 if($idalmox==0){
 
-$sql = "UPDATE garantia SET  descricao = '$descalmox', data_ini = '$dataini', data_ex = '$dataex'" .
+$sql = "UPDATE garantia_pat SET  descricao = '$descalmox', data_ini = '$dataini', data_ex = '$dataex'" .
        " WHERE pat =$idpat ";
 $update = mysqli_query($conn,$sql);
 	

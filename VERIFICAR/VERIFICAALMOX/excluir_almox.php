@@ -5,7 +5,10 @@ $id = $_GET['id'];
 $loc = $_GET['loc'];
 $nomeitem = $_GET['nomeitem'];
 
-
+//setando qual local da data e definindo o formato a ser inserido no banco
+date_default_timezone_set('America/Sao_Paulo');
+$data= new DateTime();
+$data_atual= date_format($data,"Y-m-d H:i:s");
 
 	$newpesquisa = "Select * from controle where id='$id' ";
 	$pesq1 = mysqli_query($conn, $newpesquisa);
@@ -36,7 +39,7 @@ $DESTINO="NULL";
 $MOTIVO="NULL";
 
 $historico = "Insert into history(NOMEITEM,LOCALIZACAO,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,ip,acao)
-values('$nomeitemBANCO','$loc','$origem','$DESTINO','$tipo','$qtd','$descricao',now(),'$pat','$SERIE','$MOTIVO','$protocolo','$ip','$acao')
+values('$nomeitemBANCO','$loc','$origem','$DESTINO','$tipo','$qtd','$descricao','$data_atual','$pat','$SERIE','$MOTIVO','$protocolo','$ip','$acao')
 ";
 			$pesq = mysqli_query($conn, $historico);
 

@@ -13,6 +13,15 @@ $numserie = $_POST['serie'];
 $gms= $_POST['gms'];
 $proto= $_POST['protocolo'];
 
+
+
+//setando qual local da data e definindo o formato a ser inserido no banco
+date_default_timezone_set('America/Sao_Paulo');
+$data= new DateTime();
+$data= date_format($data,"Y-m-d H:i:s");
+
+
+
 if ($NOMEITEM == "" || $TIPO == "" || $TIPO == "Escolha uma opção" ||  $QUANTIDADE == "" ||  $DESCRICAO == "") {
   echo "<script> alert('Preencha todos os campos') ;</script>";
 
@@ -54,7 +63,7 @@ header('Location: INDEXCADASTRAR.php'.'?Cadastrado');
 
            }else
            {
-echo "<script> alert('Erro ao Cadastrar');</script>";
+echo "<script> alert('Erro ao Cadastrar $data');</script>";
 echo "<script>history.go(-1)</script>";
 
            }
@@ -77,7 +86,7 @@ echo "<script>history.go(-1)</script>";
 
     $result_usuario = "INSERT INTO controle(NOMEITEM,LOCALIZACAO,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,gms,PROTOCOLO)
 
- VALUES('$suaString','$LOCALIZACAO','$ORIGEM','null','$TIPO','$QUANTIDADE','$DESCRICAO',NOW(),'$patrimonio','$numserie','$gms','$proto')";
+ VALUES('$suaString','$LOCALIZACAO','$ORIGEM','null','$TIPO','$QUANTIDADE','$DESCRICAO','$data','$patrimonio','$numserie','$gms','$proto')";
 
 
     $pesq = mysqli_query($conn, $result_usuario);
@@ -92,7 +101,7 @@ header('Location: INDEXCADASTRAR.php'.'?Cadastrado');
 
            }else
            {
-echo "<script> alert('Erro ao Cadastrar');</script>";
+echo "<script> alert('Erro ao Cadastrar $data');</script>";
 echo "<script>history.go(-1)</script>";
 
            }
@@ -116,9 +125,10 @@ echo "<script>history.go(-1)</script>";
     } else {
 
 
+
       $result_usuario1 = "INSERT INTO controle_prot(NOMEITEM,LOCALIZACAO,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,gms,PROTOCOLO)
 
- VALUES('$suaString','$LOCALIZACAO','$ORIGEM','null','$TIPO','$QUANTIDADE','$DESCRICAO',NOW(),'$patrimonio','$numserie','$gms','$proto')";
+ VALUES('$suaString','$LOCALIZACAO','$ORIGEM','null','$TIPO','$QUANTIDADE','$DESCRICAO','$data','$patrimonio','$numserie','$gms','$proto')";
 
 
       $pesq = mysqli_query($conn, $result_usuario1);
@@ -132,7 +142,7 @@ header('Location: INDEXCADASTRAR.php'.'?Cadastrado');
 
            }else
            {
-            echo "<script> alert('Erro ao Cadastrar');</script>";
+            echo "<script> alert('Erro ao Cadastrar $data');</script>";
 echo "<script>history.go(-1)</script>";
 
            }

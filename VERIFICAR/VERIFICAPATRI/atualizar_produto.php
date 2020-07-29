@@ -16,6 +16,11 @@ $SERIE=$_POST['SERIE'];
 
 
 
+//setando qual local da data e definindo o formato a ser inserido no banco
+date_default_timezone_set('America/Sao_Paulo');
+$data= new DateTime();
+$data= date_format($data,"Y-m-d H:i:s");
+
 
 $sql = "UPDATE controle_prot SET NOMEITEM = '$nome', LOCALIZACAO = '$localpat', QUANTIDADE = '$quantidadepat', DATA = '$datapat',DESCRICAO = '$descpat',gms = '$gms',PROTOCOLO='$prot'" .
        " WHERE PATRIMONIO = $pat";
@@ -29,7 +34,7 @@ $acao="Alteração";
 $tipo="Patrimonio";
 //aqui faz o historico de transferencia na tabela history
 	$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,ip,acao,LOCALIZACAO)
-values('$nome','null','null','$tipo','$quantidadepat ','$descpat',now(),'$pat','$SERIE','$motivo','$protocolo','$ip','$acao','$localpat')
+values('$nome','null','null','$tipo','$quantidadepat ','$descpat','$data','$pat','$SERIE','$motivo','$protocolo','$ip','$acao','$localpat')
 ";
 $pesq = mysqli_query($conn, $historico);
 

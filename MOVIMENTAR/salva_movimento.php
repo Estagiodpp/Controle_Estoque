@@ -11,6 +11,10 @@ $motivo = $_POST['motivo'];
 $protocolo = $_POST['protocolo'];
 
 
+//setando qual local da data e definindo o formato a ser inserido no banco
+date_default_timezone_set('America/Sao_Paulo');
+$data= new DateTime();
+$data_atual= date_format($data,"Y-m-d H:i:s");
 
 
 if ($TIPO == "Patrimonio" && $Patrimonio == 0) {
@@ -83,7 +87,7 @@ if ($Patrimonio == "" || $Patrimonio == 0) {
 // se retornar 0 quer dizer que nao entao faz um insert no novo local
 		if ($rowsn == 0) {
 			$result_select1 = "Insert into controle(NOMEITEM,LOCALIZACAO,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO)
-values('$nomeitemBANCO','$DESTINO','$origem','$destino','$tipo','$QUANTIDADE','$descricao',now(),'$pat','$SERIE','$motivo','$protocolo ')
+values('$nomeitemBANCO','$DESTINO','$origem','$destino','$tipo','$QUANTIDADE','$descricao','$data','$pat','$SERIE','$motivo','$protocolo ')
 ";
 			$pesq = mysqli_query($conn, $result_select1);
 
@@ -96,7 +100,7 @@ values('$nomeitemBANCO','$DESTINO','$origem','$destino','$tipo','$QUANTIDADE','$
 			$valor = $dado['QUANTIDADE'];
 
 			$novaqtd = $valor + $QUANTIDADE;
-			$result_select = "UPDATE controle  set QUANTIDADE='$novaqtd',MOTIVO='$motivo',PROTOCOLO='$protocolo ',DATA=now() WHERE LOCALIZACAO <> '$ORIGEM' and LOCALIZACAO = '$DESTINO' and NOMEITEM = '$NOMEITEM'	";
+			$result_select = "UPDATE controle  set QUANTIDADE='$novaqtd',MOTIVO='$motivo',PROTOCOLO='$protocolo ',DATA='$data' WHERE LOCALIZACAO <> '$ORIGEM' and LOCALIZACAO = '$DESTINO' and NOMEITEM = '$NOMEITEM'	";
 			$pesq = mysqli_query($conn, $result_select);
 		}
 	}
@@ -106,7 +110,7 @@ $ip=$_SERVER['REMOTE_ADDR'];
 $acao="Movimentacao";
 //aqui faz o historico de transferencia na tabela history
 	$historico = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,ip,acao)
-values('$nomeitemBANCO','$ORIGEM','$DESTINO','$tipo','$QUANTIDADE','$descricao',now(),'$pat','$SERIE','$motivo','$protocolo','$ip','$acao')
+values('$nomeitemBANCO','$ORIGEM','$DESTINO','$tipo','$QUANTIDADE','$descricao','$data_atual','$pat','$SERIE','$motivo','$protocolo','$ip','$acao')
 ";
 			$pesq = mysqli_query($conn, $historico);
 
@@ -159,7 +163,7 @@ else {
 		echo "<script>history.go(-1)</script>";
 		exit;
 	}
-	$result_select2 = "UPDATE controle_prot set LOCALIZACAO='$DESTINO' ,MOTIVO='$motivo',PROTOCOLO='$protocolo ',DATA=now() where  PATRIMONIO='$Patrimonio'
+	$result_select2 = "UPDATE controle_prot set LOCALIZACAO='$DESTINO' ,MOTIVO='$motivo',PROTOCOLO='$protocolo ',DATA='$data' where  PATRIMONIO='$Patrimonio'
 ";
 	$pesq = mysqli_query($conn, $result_select2);
 
@@ -167,7 +171,7 @@ else {
 	$ip=$_SERVER['REMOTE_ADDR'];
 //aqui faz o historico de transferencia na tabela history
 	$historico2 = "Insert into history(NOMEITEM,ORIGEM,DESTINO,TIPO,QUANTIDADE,DESCRICAO,DATA,PATRIMONIO,NR_SERIE,MOTIVO,PROTOCOLO,ip,acao)
-values('$nomeitemBANCO','$ORIGEM','$DESTINO','$tipo','$QUANTIDADE','$descricao',now(),'$pat','$SERIE','$motivo','$protocolo','$ip','Movimentação')
+values('$nomeitemBANCO','$ORIGEM','$DESTINO','$tipo','$QUANTIDADE','$descricao','$data_atual','$pat','$SERIE','$motivo','$protocolo','$ip','Movimentação')
 ";
 			$pesq = mysqli_query($conn, $historico2);
 

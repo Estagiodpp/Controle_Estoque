@@ -69,14 +69,14 @@
 
                     </div>
 
-
+<!-- desatived
                     <form action="../MOVIMENTAR/INDEXMOVIMENTAR.php" method="POST">
                         <input type="submit" class="btn btn--radius-2 btn--red" value="Movimentar" onClick="history.back()">
 
                         <br><br>
 
                     </form>
-
+!-->
 
 
                     <div>

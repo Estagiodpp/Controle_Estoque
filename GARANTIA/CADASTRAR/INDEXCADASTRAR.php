@@ -96,7 +96,7 @@
                     include_once('../../conexao.php');
 
 
-                    $result_select = "SELECT  NOMEITEM   from controle   ";
+                    $result_select = "SELECT  DISTINCT NOMEITEM   from controle   ";
                     $pesq = mysqli_query($conn, $result_select);
 
                     while ($registro = mysqli_fetch_array($pesq)) {
@@ -139,7 +139,7 @@
                     include_once('../../conexao.php');
 
 
-                    $result_select = "SELECT  LOCALIZACAO  from controle  ";
+                    $result_select = "SELECT DISTINCT  LOCALIZACAO   from controle  ";
                     $pesq = mysqli_query($conn, $result_select);
 
                     while ($registro1 = mysqli_fetch_array($pesq)) {

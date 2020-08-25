@@ -36,9 +36,8 @@ $nomitem = $_GET['nomeitem'];
             $SERIE = $array['NR_SERIE'];
             $gms = $array['gms'];
             $prot = $array['PROTOCOLO'];
-        ?>
 
-
+?>
             <div class="form-group">
                 <label for="nomeProduto">
                     <h5>Nome</h5>
@@ -76,7 +75,7 @@ $nomitem = $_GET['nomeitem'];
                 <label for="quantidadeProduto">
                     <h5>Data</h5>
                 </label>
-                <input class="input--style-5" type="date-time" class="form-control" id="datalmox" name="dataalmox" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $data ?>">
+                <input class="input--style-5" type="date" class="form-control" id="datalmox" name="dataalmox" placeholder="Digite o nome do produto" autocomplete="off" value="<?=$data ?>">
             </div>
             <div class="form-group">
                 <label for="quantidadeProduto">

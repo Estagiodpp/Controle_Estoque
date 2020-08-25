@@ -51,7 +51,7 @@ $id = $_GET['id'];
                     <label for="quantidadeProduto">
                         <h4>Patrimonio</h4>
                     </label>
-                    <input class="input--style-5" type="text" class="form-control" id="patalmox" name="idpat" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $pat ?>">
+                    <input readonly class="input--style-5" type="text" class="form-control" id="patalmox" name="idpat" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $pat ?>">
                 </div>
 
                 <div class="form-group">

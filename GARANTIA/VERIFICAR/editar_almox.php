@@ -14,15 +14,17 @@ $id = $_GET['id'];
 
 
         <form action="atualizar_produto.php" method="POST">
+            
+            <!--html
             <?php
-            $sql = "SELECT * FROM controle WHERE Id = $id";
+            $sql = "SELECT * FROM controle WHERE id = $id";
             $retorno = mysqli_query($conn, $sql);
 
             while ($array = mysqli_fetch_array($retorno, MYSQLI_ASSOC)) {
                 $TIPO = $array['TIPO'];
             }
             ?>
-
+            !-->
 
 
 
@@ -51,7 +53,7 @@ $id = $_GET['id'];
                     <label for="quantidadeProduto">
                         <h4>id</h4>
                     </label>
-                    <input class="input--style-5" type="number" class="form-control" id="idalmox" name="idalmox" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $id ?>">
+                    <input readonly class="input--style-5" type="number" class="form-control" id="idalmox" name="idalmox" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $id ?>">
 
                 </div>
 

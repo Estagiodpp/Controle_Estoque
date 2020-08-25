@@ -63,7 +63,7 @@
               $endereco = $array['endereco'];
               $nr = $array['nr'];
               $cep = $array['cep'];
-              $local = $array['local'];
+              $local = $array['local_sede'];
             ?>
               <tr class="principal" text align='center'>
                 <td class="principal" text align='center'>
@@ -93,7 +93,7 @@
       $data[$i]['ENDERECO']=$array['endereco'];
       $data[$i]['NR'] = $array['nr'];
       $data[$i]['CEP'] = $array['cep'];
-      $data[$i]['LOCAL'] = $array['local'];
+      $data[$i]['LOCAL'] = $array['local_sede'];
       $i++;
 
 

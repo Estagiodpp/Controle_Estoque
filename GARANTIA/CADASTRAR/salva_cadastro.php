@@ -64,7 +64,7 @@ if($TIPO=='Almoxarifado'){
     $LOCALIZACAO_gr2=$registro[0];
     
   }
-if($LOCALIZACAO_gr2==""){
+if(@$LOCALIZACAO_gr2==""){
   $LOCALIZACAO_gr2="local_padrao";
 }
   
@@ -101,7 +101,9 @@ if($pesq ){
 
 }else{
 
+  echo "<script> alert('Garantia já vinculada ao patrimônio digitado! ') ;</script>";
 
+  echo "<script>history.go(-1)</script>";
 
 }
 

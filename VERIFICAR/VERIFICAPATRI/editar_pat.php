@@ -77,7 +77,7 @@ $pat = $_GET['pat'];
                 <label for="quantidadeProduto">
                     <h5>Data</h5>
                 </label>
-                <input class="input--style-5" type="date-time" class="form-control" id="datapat" name="datapat" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $data ?>">
+                <input class="input--style-5" type="date" class="form-control" id="datapat" name="datapat" placeholder="Digite o nome do produto" autocomplete="off" value="<?= $data ?>">
             </div>
 
                <div class="form-group">

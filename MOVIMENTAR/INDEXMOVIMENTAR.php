@@ -139,7 +139,7 @@ $newpesquisa = "Select * from controle_prot where PATRIMONIO='$id' ";
 
 
 
-                                               if($nomeBanco!="0"){
+                                               if($nomeBanco=="0"){
                                                 $result_select = "SELECT  DISTINCT NOMEITEM  from controle ";
                                                 $pesq = mysqli_query($conn, $result_select);
 

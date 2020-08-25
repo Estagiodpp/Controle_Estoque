@@ -196,13 +196,13 @@ validao desativado*/
         
  
  if(@$registro['ID']==""||@$registro['NOMESEDE']==""||@$registro['ENDERECO']==""||@$registro['NR']==""||@$registro['CEP']==""||@$registro['LOCAL']==""){
-                     echo "<script>alert('Existem campos em branco ,se não souber coloque ex: null ');history.back()</script>";
-                      exit;
+  echo "<script>alert('Existem campos em branco ,se não souber coloque ex: null ');history.back()</script>";
+
                     }
             // faz o insert na tabela com try cat caso houver erro
 
             try{
-              $result_usuario = "INSERT INTO sedes(id,nomesede,endereco,nr,cep,local)
+              $result_usuario = "INSERT INTO sedes(id,nomesede,endereco,nr,cep,local_sede)
 
               VALUES('$registro[ID]','$registro[NOMESEDE]','$registro[ENDERECO]','$registro[NR]','$registro[CEP]','$registro[LOCAL]')";
              
